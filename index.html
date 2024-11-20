@@ -1,0 +1,20 @@
+<script >
+    let choices = ["rock", "paper", "scissor"]
+    function getComputerChoice(){
+        let random = Math.floor(Math.random() * choices.length)
+        return choices[random]
+    }
+
+    function getHumanChoice(){
+        let userInput = prompt("Please enter your choice: ")
+        if(choices.includes(userInput)){
+            return userInput
+        } else {
+            userInput = prompt("Please enter your choice: ")
+        } 
+
+        return userInput
+    }
+
+
+</script>
