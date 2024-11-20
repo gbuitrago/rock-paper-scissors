@@ -5,16 +5,68 @@
         return choices[random]
     }
 
+    function lowerCase(word){
+        let newStr = ""
+        for(i=0; i < word.length; i++){
+            let char = word[i]
+            newStr += char.toLowerCase()
+        }
+
+        return newStr
+    }
+
     function getHumanChoice(){
-        let userInput = prompt("Please enter your choice: ")
-        if(choices.includes(userInput)){
-            return userInput
-        } else {
-            userInput = prompt("Please enter your choice: ")
-        } 
+        let userInput = lowerCase(prompt("Please enter your choice: "))
+        while(choices.includes(userInput) !== true){
+            userInput = lowerCase(prompt("Please enter your choice: "))
+        }
 
         return userInput
     }
 
+    let humanScore = 0
+    let computerScore = 0
+
+    function playround(humanChoice, computerChoice){
+        let playerWin = `You win! ${humanChoice} beats ${computerChoice}`
+        let computerWin = `You lose! ${computerChoice} beats ${humanChoice}`
+        let draw = `Its a draw. ${humanChoice} - ${computerChoice}`
+        if(humanChoice !== computerChoice){
+            if((humanChoice === "scissor") && (computerChoice === "paper") ){
+            prompt(playerWin)
+            humanScore += 1
+            }else if((humanChoice === "paper") && (computerChoice === "rock")) {
+                prompt(playerWin)
+                humanScore += 1
+
+            }else if((humanChoice === "rock") && (computerChoice === "scissor")){
+                prompt(playerWin)
+                humanScore += 1
+            } else {
+                prompt(computerWin)
+                computerScore += 1
+            }
+        }else{
+            prompt(draw)
+        }
+    }
+        
+    function playGame(){
+        while(humanScore < 3 && computerScore < 3){
+            const humanSelection = getHumanChoice();
+            const computerSelection = getComputerChoice();
+            playround(humanSelection, computerSelection)
+            prompt(`${humanScore} : ${computerScore}`)
+        }
+        if(computerScore < humanScore){
+            prompt(`Congrats you win! Score: ${humanScore} - ${computerScore}`)
+        } else {
+            prompt(`You lose! Score: ${humanScore} - ${computerScore}`)
+        }
+    }
+       
+
+    
+    
 
 </script>
